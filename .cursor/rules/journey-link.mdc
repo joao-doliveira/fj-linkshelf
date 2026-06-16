@@ -1,0 +1,51 @@
+---
+description: Link to journey planning repo; keep implementation in fj-linkshelf
+alwaysApply: true
+---
+
+# Journey planning link
+
+LinkShelf **implementation** lives in this repo (`fj-linkshelf`). The sibling **Journey** repo (`fullstack-journey`) holds high-level phase plans — not application code.
+
+## Planning docs
+
+| What | Path (from repo root) |
+|------|------------------------|
+| Project overview | `../fullstack-journey/projects/linkshelf/README.md` |
+| High-level phase plans (Journey) | `../fullstack-journey/projects/linkshelf/phase-*.md` |
+| Detailed execution plans (this repo) | `.cursor/plans/phase-*.md` |
+
+## Workflow
+
+End-to-end flow for a phase:
+
+1. **Journey — high-level plan:** Create or maintain `projects/linkshelf/phase-<N>.md` (outcomes, scope, checklist).
+2. **Journey — detailed plan:** Invoke `@fj-plan-on-project` with the phase file attached → writes `.cursor/plans/phase-<N>.md` here with defined steps and step completion tracking.
+3. **Project — execute:** Invoke `@fj-ls-execute-next-step` once. It reads the detailed plan, picks the next step, and implements a **commit-sized** chunk. Refine the output if needed, **commit** the result, then invoke again for the next step. Repeat until all steps are `done`.
+4. **Project — review:** Invoke `@fj-ls-review` for a PR-level review against the detailed plan, Journey phase file, and project rules. Call it as many times as needed (back-and-forth fixes, missing items, etc.).
+5. **Project — wrap up:** Invoke `@fj-ls-wrap-up` to run quality checks (tests if applicable, lint, typecheck, formatting), ask permission to push, and draft or update the PR description.
+
+**Journey shipping** (checklist ticks, Journey-only changes): `@fj-wrap-up` in the Journey repo — separate from `@fj-ls-wrap-up`.
+
+## Skills (this repo)
+
+| Skill | Purpose |
+|-------|---------|
+| `@fj-ls-execute-next-step` | Implement the next plan step (one invocation = one step) |
+| `@fj-ls-review` | PR-level review; read-only unless user asks to fix gaps |
+| `@fj-ls-wrap-up` | Quality gates, push (with permission), PR description |
+
+## Stack (interview study)
+
+Single Next.js App Router app, PostgreSQL (Docker + Drizzle), plain REST Route Handlers, Tailwind CSS. **Dry setup** — no monorepo, no real auth (user switcher only). See Journey overview for interview topic map.
+
+## Rules
+
+- All application code, configs, and tests belong in **`fj-linkshelf` only**.
+- Do **not** add implementation files under `fullstack-journey/projects/linkshelf/`.
+- Each execute step should produce work sized for a single commit before the next `@fj-ls-execute-next-step`.
+- When Journey checklist items are complete, tick them in `phase-*.md` in the Journey repo; commit each repo separately.
+
+## Workspace
+
+Develop with both repos open: `../fullstack-journey/fullstack-journey.code-workspace`.
