@@ -14,8 +14,9 @@ Perform a **PR-level review** of current branch work against the detailed plan, 
 
 | What | Path (from fj-linkshelf root) |
 |------|-------------------------------|
-| Active plan | `.cursor/plans/phase-N.md` |
-| Journey phase file | `../fullstack-journey/projects/linkshelf/phase-N.md` |
+| Execution plans | `.cursor/plans/phase-*.md` (phase-0 = bootstrap, phase-1 = study build) |
+| Active plan | Plan under review — usually the highest phase not `done` |
+| Journey phase file | `../fullstack-journey/projects/linkshelf/phase-0.md` (tick when implementation phase-1 ships) |
 | Project overview | `../fullstack-journey/projects/linkshelf/README.md` |
 
 ## Plan document structure
@@ -62,8 +63,8 @@ Plans are created via `@fj-plan-on-project` in Journey. Each `.cursor/plans/phas
 Read-only by default. Do not commit, push, or open a PR unless the user asks to fix gaps.
 
 1. `git diff` and `git log` on current branch vs base (usually `main`).
-2. Read `.cursor/plans/phase-N.md` — tracking table, steps, retrospective section.
-3. Read Journey `phase-N.md` and `README.md` — outcomes, interview topic map, checklist, acceptance criteria.
+2. Read the relevant `.cursor/plans/phase-N.md` file(s) — tracking table, steps, retrospective section. For LinkShelf, phase-0 (bootstrap) may be `done` while phase-1 (study build) is active.
+3. Read Journey `projects/linkshelf/phase-0.md` and `README.md` — outcomes, interview topic map, checklist, acceptance criteria. Journey has one phase file; implementation may split across `phase-0.md` + `phase-1.md` in this repo.
 4. Review as if approving a PR:
    - **Plan alignment:** branch changes vs completed and remaining plan steps; divergences or skipped work.
    - **Journey alignment:** plan status vs Journey checkboxes and phase acceptance criteria.
