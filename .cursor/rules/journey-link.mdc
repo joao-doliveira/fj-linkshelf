@@ -13,7 +13,7 @@ LinkShelf **implementation** lives in this repo (`fj-linkshelf`). The sibling **
 |------|------------------------|
 | Project overview | `../fullstack-journey/projects/linkshelf/README.md` |
 | High-level phase plans (Journey) | `../fullstack-journey/projects/linkshelf/phase-*.md` |
-| Detailed execution plans (this repo) | `.cursor/plans/phase-*.md` |
+| Detailed execution plans (this repo) | `.cursor/plans/phase-*.md` — phase-0 bootstrap, phase-1 study build |
 
 ## Workflow
 

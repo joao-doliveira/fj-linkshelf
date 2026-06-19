@@ -14,13 +14,14 @@ Implement the next incomplete step from the active phase plan. One invocation = 
 
 | What | Path (from fj-linkshelf root) |
 |------|-------------------------------|
-| Active plan | `.cursor/plans/phase-N.md` |
-| Journey phase file | `../fullstack-journey/projects/linkshelf/phase-N.md` |
+| Execution plans | `.cursor/plans/phase-*.md` |
+| Active plan | Highest `phase-N.md` where **Status** is not `done` (e.g. phase-0 bootstrap, then phase-1 study build) |
+| Journey phase file | `../fullstack-journey/projects/linkshelf/phase-0.md` (single strategic doc for LinkShelf) |
 | Project overview | `../fullstack-journey/projects/linkshelf/README.md` |
 
 ## Procedure
 
-1. Read `.cursor/plans/phase-N.md`. If missing, tell user to invoke `@fj-plan-on-project` in Journey with `@projects/linkshelf/phase-N.md` attached.
+1. Find the **active** `.cursor/plans/phase-N.md` — the plan with status `in-progress` or `planning`, or the highest phase number not marked `done`. Read that file. If missing, tell user to invoke `@fj-plan-on-project` in Journey or create the next implementation plan.
 2. Find the **current step** from **Task completion tracking** (`current` row, or first `todo` after last `done`).
 3. Read that step's full section (goal, acceptance, interview drills, alternatives).
 4. Implement **only that step** in `fj-linkshelf`. Apply `.cursor/rules/*`.

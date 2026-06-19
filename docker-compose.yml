@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: fj-linkshelf-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: linkshelf
+      POSTGRES_PASSWORD: linkshelf
+      POSTGRES_DB: linkshelf
+    ports:
+      - "5432:5432"
+    volumes:
+      - linkshelf_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U linkshelf -d linkshelf"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  linkshelf_pg_data:
